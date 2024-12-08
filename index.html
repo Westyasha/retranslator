@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Westyasha</title>
+    <style>
+        /* Убираем прокрутку */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Фон из папки resources */
+        #background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('resources/background.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        /* И iframe, который будет показывать контент с другого сайта */
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <!-- Фон из папки resources -->
+    <div id="background"></div>
+
+    <!-- Ретрансляция с другого сайта -->
+    <iframe id="iframe" src="https://leans.fun/Westyasha"></iframe>
+
+    <script>
+        // Проверка, чтобы отловить открытие консоли разработчика
+        let devtoolsOpen = false;
+        const threshold = 160; // Порог для определения, открыты ли инструменты разработчика
+
+        setInterval(function() {
+            const width = window.outerWidth - window.innerWidth;
+            const height = window.outerHeight - window.innerHeight;
+
+            if (width > threshold || height > threshold) {
+                if (!devtoolsOpen) {
+                    devtoolsOpen = true;
+                    console.log('%cЗАЧЕМ ТЫ СЮДА ЗАШЕЛ?', 'color: red; font-size: 24px; font-weight: bold;');
+                }
+            } else {
+                devtoolsOpen = false;
+            }
+        }, 500); // Проверяем каждые полсекунды
+    </script>
+</body>
+</html>
