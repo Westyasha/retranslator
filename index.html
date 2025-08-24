@@ -1,107 +1,64 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Westyasha</title>
-    
-    <!-- Вставка favicon -->
-    <link rel="icon" href="resources/day.png" type="image/png">
-
-    <!-- Канонический URL для сайта -->
-    <link rel="canonical" href="https://www.westyasha.online/">
-
-    <!-- Open Graph Prefix -->
-    <meta prefix="og: http://ogp.me/ns#" />
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:site_name" content="Westyasha" />
-    <meta property="og:title" content="Westyasha">
-    <meta property="og:description" content="Welcome to my Hell" />
-    <meta property="og:image" content="https://s3.leans.fun/avatars/7fa0a365-e3f9-4926-bd05-fbb352a5fe65.gif?w=1200" />
-    <meta property="og:url" content="https://www.westyasha.online/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Avatar Image" />
-
-    <!-- Twitter Card meta tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Westyasha" />
-    <meta name="twitter:description" content="Welcome to my Hell" />
-    <meta name="twitter:image" content="https://s3.leans.fun/avatars/7fa0a365-e3f9-4926-bd05-fbb352a5fe65.gif?w=1200" />
-
-    <!-- Микроразметка Schema.org -->
-    <script type="application/ld+json">
-    {
-        "@context": "http://schema.org/",
-        "@type": "Westyasha",
-        "name": "Westyasha",
-        "url": "https://www.westyasha.online/",
-        "description": "Welcome to my Hell"
-    }
-    </script>
-
-    <style>
-        /* Убираем прокрутку */
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            height: 100vh;
-        }
-
-        /* Фон из папки resources */
-        #background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('resources/background.jpg');
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
-        }
-
-        /* И iframe, который будет показывать контент с другого сайта */
-        iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            z-index: 2;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Westyasha's Hell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./discord.css">
+  <link rel="stylesheet" href="./faceit.css">
+<link rel="shortcut icon" href="res/icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="res/icon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="res/icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="res/icon.png">
 </head>
 <body>
-    <!-- Фон из папки resources -->
-    <div id="background"></div>
+  <canvas id="particle-canvas"></canvas>
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
 
-    <!-- Ретрансляция с другого сайта -->
-    <iframe id="iframe" src="https://leans.fun/Westyasha"></iframe>
+  <header id="desktopHeader">
+    <div class="background-title">
+      <h1>Westyasha</h1>
+    </div>
+    
+    <div class="focal"><img src="res/girl.png"></div>
 
-    <script>
-        // Проверка, чтобы отловить открытие консоли разработчика
-        let devtoolsOpen = false;
-        const threshold = 160; // Порог для определения, открыты ли инструменты разработчика
+    <div class="social-links-container">
+      <div class="social-links">
+        <a href="https://steamcommunity.com/id/Westyasha/" target="_blank" data-tooltip="Steam">
+          <i class="fa-brands fa-steam"></i>
+        </a>
+        <a href="https://github.com/Westyasha" target="_blank" data-tooltip="Github">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.youtube.com/westik" target="_blank" data-tooltip="YouTube">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+        <a href="https://www.twitch.tv/westyasha" target="_blank" data-tooltip="Twitch">
+          <i class="fa-brands fa-twitch"></i>
+        </a>
+        <a href="https://t.me/westyasha_tg" target="_blank" data-tooltip="Telegram">
+          <i class="fa-brands fa-telegram"></i>
+        </a>
+        <a href="https://www.faceit.com/ru/players/Westyasha-/stats/cs2" target="_blank" data-tooltip="Faceit">
+          <svg fill="currentColor" width="28" height="28" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 3.599c0-0.13-0.135-0.266-0.135-0.266-0.13 0-0.13 0-0.266 0.135-2.667 4.13-5.464 8.266-8.13 12.531h-23.203c-0.266 0-0.401 0.401-0.13 0.531 9.599 3.604 23.599 9.068 31.333 12.135 0.266 0.135 0.531-0.135 0.531-0.266z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
 
-        setInterval(function() {
-            const width = window.outerWidth - window.innerWidth;
-            const height = window.outerHeight - window.innerHeight;
+  <div id="discord-widget-container"></div>
+  <div id="faceit-widget-container"></div>
 
-            if (width > threshold || height > threshold) {
-                if (!devtoolsOpen) {
-                    devtoolsOpen = true;
-                    console.log('%cЗАЧЕМ ТЫ СЮДА ЗАШЕЛ?', 'color: red; font-size: 24px; font-weight: bold;');
-                }
-            } else {
-                devtoolsOpen = false;
-            }
-        }, 500); // Проверяем каждые полсекунды
-    </script>
-
+  <script src="./script.js"></script>
+  <script src="./discord.js"></script>
+  <script src="./faceit.js"></script>
 </body>
 </html>

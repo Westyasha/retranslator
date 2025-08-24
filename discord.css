@@ -1,0 +1,420 @@
+#discord-widget-container {
+  width: 100%;
+  max-width: 420px;
+  font-family: 'Inter', sans-serif;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+#discord-widget-container.hidden {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+.discord-widget-toggle {
+  width: 36px;
+  height: 5px;
+  background-color: #282828;
+  border-radius: 2.5px;
+  cursor: none;
+  transition: transform 0.4s ease, background-color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.discord-widget-toggle:hover {
+  background-color: #3f3f3f;
+}
+
+.discord-widget {
+  width: 100%;
+  background-color: #111113;
+  border-radius: 8px;
+  border: 1px solid #282828;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out, transform 0.4s ease-in-out, border-width 0.1s linear;
+  max-height: 1000px;
+  opacity: 1;
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+#discord-widget-container.collapsed {
+  gap: 0;
+}
+
+#discord-widget-container.collapsed .discord-widget-toggle {
+  transform: rotate(180deg);
+}
+
+#discord-widget-container.collapsed .discord-widget {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  border-width: 0;
+}
+
+.discord-banner {
+  height: 100px;
+}
+.discord-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.discord-content {
+  padding: 0 12px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.discord-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: -32px;
+}
+
+.discord-avatar-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+}
+
+.discord-avatar,
+.discord-avatar-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.discord-avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #111113;
+  box-sizing: border-box;
+}
+
+.discord-status {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 4px solid #111113;
+  box-sizing: border-box;
+}
+
+.discord-status.online { background-color: #3ba55d; }
+.discord-status.idle { background-color: #faa61a; }
+.discord-status.dnd { background-color: #ed4245; }
+.discord-status.offline { background-color: #747f8d; }
+
+.discord-status.dnd::before {
+  content: '';
+  width: 60%;
+  height: 3px;
+  background-color: #111113;
+  border-radius: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.discord-main-content {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  overflow: hidden;
+  padding-top: 32px;
+}
+
+.discord-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+.discord-username {
+  color: #f2f2f2;
+  font-weight: 600;
+  font-size: 1.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.discord-badges {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+.discord-badge {
+  width: 20px;
+  height: 20px;
+}
+.discord-custom-status-wrapper {
+  min-height: 24px;
+}
+.discord-custom-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  color: #b9bbbe;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.discord-custom-status.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.discord-custom-status img {
+  width: 22px;
+  height: 22px;
+}
+.discord-clan-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: #f2f2f2;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+.discord-clan-badge img {
+  width: 16px;
+  height: 16px;
+}
+
+.discord-activity-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.discord-activity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.discord-activity.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.activity-expander {
+  color: #b9bbbe;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+  max-height: 30px;
+  opacity: 1;
+}
+
+.secondary-activities {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+.secondary-activities > div {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.discord-activity-stack:hover .secondary-activities {
+  grid-template-rows: 1fr;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.discord-activity-stack:hover .activity-expander {
+  opacity: 0;
+  max-height: 0;
+  pointer-events: none;
+}
+
+.secondary-activities::-webkit-scrollbar { width: 4px; }
+.secondary-activities::-webkit-scrollbar-track { background: transparent; }
+.secondary-activities::-webkit-scrollbar-thumb { background: #282828; border-radius: 4px; }
+.secondary-activities::-webkit-scrollbar-thumb:hover { background: #3f3f3f; }
+
+.discord-activity.spotify {
+  justify-content: space-between;
+}
+.spotify-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-grow: 1;
+}
+.spotify-song {
+  font-weight: 600;
+  color: #f2f2f2;
+}
+.spotify-artist {
+  font-size: 0.875rem;
+  color: #b9bbbe;
+}
+.spotify-song,
+.spotify-artist {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.spotify-album-art {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.spotify-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 24px;
+  width: 24px;
+  flex-shrink: 0;
+}
+.spotify-bar {
+  width: 4px;
+  height: 100%;
+  border-radius: 2px;
+  background: #1DB954;
+  animation: spotify-pulse 1.5s ease-in-out infinite;
+  transform-origin: bottom;
+  transition: background 0.7s ease;
+}
+.spotify-bar:nth-child(2) { animation-delay: -1.2s; }
+.spotify-bar:nth-child(3) { animation-delay: -0.9s; }
+@keyframes spotify-pulse {
+  0%, 100% { transform: scaleY(0.1); }
+  25% { transform: scaleY(1.0); }
+  50% { transform: scaleY(0.2); }
+  75% { transform: scaleY(0.6); }
+}
+
+.discord-activity.game {
+  justify-content: space-between;
+  align-items: center;
+}
+.game-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.game-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  gap: 1px;
+  flex-grow: 1;
+}
+.game-name {
+  font-weight: 600;
+  color: #f2f2f2;
+}
+.game-details,
+.game-state,
+.game-time {
+  font-size: 0.875rem;
+  color: #b9bbbe;
+}
+.game-name,
+.game-details,
+.game-state,
+.game-time {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  .discord-banner {
+    height: 75px;
+  }
+  .discord-header {
+    gap: 12px;
+    margin-top: -28px;
+  }
+  .discord-avatar-wrapper {
+    width: 56px;
+    height: 56px;
+  }
+  .discord-status {
+    width: 20px;
+    height: 20px;
+    right: -3px;
+    bottom: -3px;
+  }
+  .discord-main-content {
+    padding-top: 24px;
+    gap: 0.5rem;
+  }
+  .discord-username {
+    font-size: 1.1rem;
+  }
+  .discord-clan-badge {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+  }
+  .discord-clan-badge img {
+    width: 14px;
+    height: 14px;
+  }
+  .discord-activity {
+    padding: 8px;
+    gap: 10px;
+  }
+  .spotify-album-art,
+  .game-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .spotify-song,
+  .game-name {
+    font-size: 0.9rem;
+  }
+  .spotify-artist,
+  .game-details,
+  .game-state,
+  .game-time {
+    font-size: 0.8rem;
+  }
+}
