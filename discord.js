@@ -196,7 +196,7 @@ if (localStorage.getItem('discordWidgetCollapsed') !== 'false') {
             if (element) action(element);
         };
         
-        const avatarUrl = 'res/avatar.jpg';
+        const avatarUrl = 'https://cdn.discordapp.com/guilds/691725745499668510/users/375737212186132490/avatars/91999eb3f827a305bcca3f474dc832a2.webp?size=128';
         const avatarDecorationURL = 'https://cdn.discordapp.com/avatar-decoration-presets/a_6d99f670de3fcee669660fe262e896ea.png?size=160&passthrough=false';
 
         updateElement('.discord-avatar', el => { if(el.src !== avatarUrl) el.src = avatarUrl; });

@@ -34,7 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
         widgetContainer.innerHTML = `
             <div class="faceit-widget-toggle"></div>
             <div class="faceit-widget">
+<<<<<<< HEAD
                 <div class="faceit-banner"><img src="${player.cover_image || 'res/banner.png'}" alt="Faceit Banner"></div>
+=======
+                <div class="faceit-banner"><img src="https://distribution.faceit-cdn.net/images/dad403ee-222e-466e-8403-7b364af7733c.jpg" alt="Faceit Banner"></div>
+>>>>>>> parent of e48c84a (fix banner + avatar)
                 <div class="faceit-content">
                     <div class="faceit-header">
                         <div class="faceit-avatar-wrapper">
