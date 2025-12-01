@@ -37,6 +37,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const emailBtn = document.getElementById('email-btn');
+    const notification = document.getElementById('copy-notification');
+
+    if (emailBtn && notification) {
+        emailBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.clipboard.writeText('me@westyasha.online').then(() => {
+                notification.classList.add('show');
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        });
+    }
+
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
